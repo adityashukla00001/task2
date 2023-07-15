@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 20px;
+      width: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .form-container {
+      margin-bottom: 20px;
+    }
+    .task-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .delete-btn {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Task Manager</h1>
+  <div class="form-container">
+    <form action="/tasks" method="POST" class="form-inline">
+      <div class="form-group mx-sm-3">
+        <input type="text" name="task" class="form-control" placeholder="Enter a task" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+  </div>
+  <ul class="task-list">
+    <% tasks.forEach((task, index) => { %>
+      <li>
+        <%= task %>
+        <form action="/tasks/<%= index %>/delete" method="POST" style="display: inline;">
+          <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
